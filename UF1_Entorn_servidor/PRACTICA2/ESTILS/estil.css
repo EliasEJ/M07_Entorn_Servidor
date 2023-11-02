@@ -1,0 +1,68 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+label {
+    color: rgba(0, 0, 0, 0.695);
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+div.container {
+    width: 100%;  
+    background-color: rgba(209, 209, 209, 0);
+    padding: 30px;
+    border-radius: 10px;
+}
+.button{
+    background-color: rgba(0, 0, 0, 0.55);
+    color: white;
+    font-size: 12px;
+    margin-right: 10px;    
+    padding: 8px 15px;
+    border-radius: 10%;
+    border: none;
+}
+.button:hover{
+    background-color: rgba(232, 232, 232, 0.8);
+    color: black;
+    border: 1px solid black;
+}
+.titulo{
+	margin-left: 1.5%;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+table{
+    width: 50%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 20%;
+    margin-bottom: 10px;
+}
+th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+}
+th {
+    background-color: #e597c2;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #fdddff;
+}
+button.retornar{
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    margin-right: 10px;    
+    padding: 8px 15px;
+    border-radius: 10%;
+    margin-left: 20%;
+
+}   
+
+.faltanDatos{
+    color: red;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
