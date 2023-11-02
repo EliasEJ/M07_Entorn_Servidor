@@ -90,7 +90,12 @@ select {
 }
 
 .header button {
-	background-color: #c8c8c8;
+	background-color: #424242;
+	color : white;
+	float: right;
+	margin-right: 5px;
+	/* Los botones rectangulares */
+	border-radius: 4px;
 }
 
 .login{
