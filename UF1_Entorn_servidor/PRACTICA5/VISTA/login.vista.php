@@ -14,7 +14,8 @@ require_once '../CONTROLADOR/controlador.login.php';
     </style>
 </head>
 <body>
-    <div class="login">
+  <h1>Login</h1>
+    
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="centrarFormulari">
         <label for="username">Username</label>
         <input type="text" name="username" id="username" value = "<?php echo username() ?>" required><br>
@@ -27,6 +28,5 @@ require_once '../CONTROLADOR/controlador.login.php';
         Has oblidat la contrasenya ?<a href="reset.vista.php"> Recupera-la</a>
         </div>
     </form>
-    </div>
 </body>
 </html>

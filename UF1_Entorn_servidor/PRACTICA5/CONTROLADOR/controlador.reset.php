@@ -20,9 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Guardamos el token en la base de datos junto con el username
   token($username, $token);
-  $idUsuari = obtenirId($username);
   
-
   // Creamos un objeto PHPMailer
   $mail = new PHPMailer(true);
 
@@ -40,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail->setFrom('ccdarckx@gmail.com', 'Elyass Jerari');
     $mail->addAddress($username);
     $mail->Subject = 'Recuperació de contrasenya';
-    $mail->Body = 'Per recuperar la teva contrasenya, fes clic en el següent enllaç: http://localhost/reset.php?token=' . $token;
+    $mail->Body = 'Per recuperar la teva contrasenya, fes clic en el següent enllaç: http://localhost/M07_Entorn_Servidor/UF1_Entorn_servidor/PRACTICA5/VISTA/change.vista.php?token=' . $token;
 
     // Enviamos el mensaje
     $mail->send();
