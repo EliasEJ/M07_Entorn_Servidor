@@ -180,17 +180,30 @@ function esborrar($id){
 $pdo = con();
 
 
-function token($idUser, $token){
+function token($username, $token){
     $con = con();
     try {
-        $statement = $con->prepare("INSERT INTO token (id_user, token) VALUES (:id_user, :token)");
-        $statement->bindParam(':id_user', $idUser);
+        $statement = $con->prepare("UPDATE usuaris SET token = :token WHERE username = :username");
+        $statement->bindParam(':username', $username);
         $statement->bindParam(':token', $token);
 
         $statement->execute();
-        header('Location: index.php');
     } catch(PDOException $e){
         echo "Error: " . $e->getMessage();
     }
 }
+
+function obtenirId($username){
+    $con = con();
+    try {
+        $statement = $con->prepare("SELECT id FROM usuaris WHERE username = :username");
+        $statement->bindParam(':username', $username);
+        $statement->execute();
+        $idUsuari = $statement->fetch(PDO::FETCH_ASSOC);
+        return $idUsuari['id'];
+    } catch(PDOException $e){
+        echo "Error: " . $e->getMessage();
+    }
+}
+
 ?>

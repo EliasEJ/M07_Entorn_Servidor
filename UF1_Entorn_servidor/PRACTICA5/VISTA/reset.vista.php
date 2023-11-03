@@ -12,9 +12,6 @@
     <label for="username">Username:</label>
     <input type="text" name="username" id="username" required>
     <br>
-    <label for="novaPassword">Nova contrasenya:</label>
-    <input type="password" name="novaPassword" id="novaPassword" required>
-    <br>
     <button type="submit">Enviar</button>
     <?php
     require_once '../CONTROLADOR/controlador.reset.php';

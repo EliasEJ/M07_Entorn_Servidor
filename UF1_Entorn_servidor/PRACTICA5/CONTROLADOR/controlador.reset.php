@@ -2,9 +2,6 @@
 // Elyass Jerari
 session_start();
 
-$idUser = $_SESSION['id'];
-
-
 // Importamos la clase PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -18,12 +15,12 @@ require '..\MODEL\model.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Obtenemos los datos del formulario
   $username = $_POST['username'];
-  $newPassword = $_POST['novaPassword'];
 
   $token = bin2hex(random_bytes(32));
 
   // Guardamos el token en la base de datos junto con el username
-  token($idUser, $token);
+  token($username, $token);
+  $idUsuari = obtenirId($username);
   
 
   // Creamos un objeto PHPMailer
@@ -49,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail->send();
 
     // Mostramos un mensaje de éxito
-    echo 'Correu enviat a la adreça ' . $username . ' amb èxit';
+    echo '<br>' . 'Correu enviat a la adreça ' . $username . ' amb èxit';
   } catch (Exception $e) {
     // Mostramos un mensaje de error
     echo 'Error: ' . $mail->ErrorInfo;
