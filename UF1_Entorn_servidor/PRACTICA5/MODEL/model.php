@@ -179,4 +179,18 @@ function esborrar($id){
 
 $pdo = con();
 
+
+function token($idUser, $token){
+    $con = con();
+    try {
+        $statement = $con->prepare("INSERT INTO token (id_user, token) VALUES (:id_user, :token)");
+        $statement->bindParam(':id_user', $idUser);
+        $statement->bindParam(':token', $token);
+
+        $statement->execute();
+        header('Location: index.php');
+    } catch(PDOException $e){
+        echo "Error: " . $e->getMessage();
+    }
+}
 ?>

@@ -22,8 +22,10 @@ require_once '../CONTROLADOR/controlador.login.php';
         <input type="password" name="password" id="password" value = "<?php echo password() ?>" required><br>
         <button type="submit" id="boto" value="Login" class="bttRegistre">Login</button>
         <button type='reset' value='Tornar' onclick="window.location.href='../index.php'" class="bttRegistre">Tornar</button>
-        <br>
-        <?php comprovar()?>
+        <?php comprovar()?><br>
+        <div class="oblidat">
+        Has oblidat la contrasenya ?<a href="reset.vista.php"> Recupera-la</a>
+        </div>
     </form>
     </div>
 </body>

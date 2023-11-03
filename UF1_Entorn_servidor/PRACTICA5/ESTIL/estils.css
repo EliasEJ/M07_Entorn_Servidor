@@ -85,17 +85,24 @@ select {
 	border-radius: 4px;
 	box-sizing: border-box;
 }
-.header {
-	background-color: #2e2e2e;
-}
 
 .header button {
 	background-color: #424242;
 	color : white;
 	float: right;
 	margin-right: 5px;
-	/* Los botones rectangulares */
 	border-radius: 4px;
+}
+.header p {
+	color: #2580b4;
+	float: right;
+	margin-right: 5px;
+}
+.header a {
+	color :#424242; 
+	float: right;
+	margin-left: 5px;
+	margin-right: 12px;
 }
 
 .login{
@@ -160,4 +167,8 @@ input{
 }
 .divTableBody {
 	display: table-row-group;
+}
+.oblidat{
+	margin-top: 10px;
+	font-size: 15px;
 }

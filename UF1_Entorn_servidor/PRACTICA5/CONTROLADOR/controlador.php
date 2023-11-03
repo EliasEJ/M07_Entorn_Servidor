@@ -145,6 +145,5 @@ function CRUD (){
     </div>
     </div>
     </form>';
-    
 }
 ?>

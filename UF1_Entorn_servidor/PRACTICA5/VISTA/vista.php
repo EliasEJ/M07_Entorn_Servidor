@@ -15,8 +15,8 @@
 			require_once 'CONTROLADOR/controlador.php';
 			if (isset($_SESSION['user'])) {
 				$user = $_SESSION['user'];
-				echo "<p>Benvingut " . $user['username'] . "</p>";
 				echo "<a href='CONTROLADOR/logout.php'>Logout</a>";
+				echo "<p>Benvingut " . $user['username'] . "</p>";
 			} else {
 				echo "<button type='submit' value='Login' onclick=\"window.location.href='VISTA/login.vista.php'\">Login</button> 
 				<button type='submit' value='Registre' onclick=\"window.location.href='VISTA/registre.vista.php'\">Registrar-se</button>"; 
