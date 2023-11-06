@@ -16,8 +16,8 @@ require_once '../CONTROLADOR/controlador.registre.php'
 <body>
     <h1>Registre</h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="centrarFormulari">
-        <label for="username" id="username">Username</label>
-        <input type="text" name="username" value = "<?php echo username() ?>" required><br>
+        <label for="username" id="username">Email</label>
+        <input type="email" name="username" value = "<?php echo username() ?>" required><br>
         <label for="password1">Contrasenya</label><br>
         <input type="password" name="password1" value = "<?php echo password() ?>" required><br>
         <label for="password2">Repeteix la contrasenya</label><br>

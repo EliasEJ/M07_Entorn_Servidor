@@ -1,6 +1,6 @@
 <?php
 //Elyass Jerari
-require_once '../MODEL/model.php';
+include '../MODEL/model.php';
 require_once '../VISTA/login.vista.php';
 // Inicia la sessió
 session_start();
@@ -14,6 +14,13 @@ function comprovar() {
         // Obte les dades del formulari
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
+        // Guardar el nombre d'intents en una cookie.
+        if (!isset($_COOKIE['numIntents'])) {
+            $numIntents = 0;
+            setcookie('numIntents', $numIntents, time() + 3600);
+        } else {
+            $numIntents = $_COOKIE['numIntents'];
+        }
 
         // Valida les dades
         $errors = [];
@@ -22,6 +29,7 @@ function comprovar() {
         }
         if (empty($password)) {
             $errors[] = "El camp de contrasenya es obligatori.";
+            $numIntents++;
         }
 
         // Si hi ha errors, els mostra i acaba
@@ -32,6 +40,15 @@ function comprovar() {
         } else {
             // Si no hi ha errors fa el login
             login($username, $password);
+            // Si la contrasenya es incorrecte incrementa el nombre d'intents
+            if (!login($username, $password)) {
+                $numIntents++;
+                setcookie('numIntents', $numIntents, time() + 60);
+            }
+            // Si el nombre d'intents es igual a 3, mostra un captcha
+            if ($numIntents >= 3) {
+                echo '<div class="g-recaptcha" data-sitekey="6LdYWP4oAAAAAHatuy7MghKYp7hdYZTiKI7BtXgo"></div>';
+            }
         }
     }
 }

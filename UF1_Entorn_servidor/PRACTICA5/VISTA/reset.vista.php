@@ -9,8 +9,8 @@
 <body>
   <h1>Recuperar contrasenya</h1>
   <form method="post" class="centrarFormulari">
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username" required>
+    <label for="username">Email:</label>
+    <input type="email" name="username" id="username" required>
     <br>
     <button type="submit" class="bttRegistre">Enviar</button>
     <button type='reset' value='Tornar' onclick="window.location.href='../index.php'" class="bttRegistre">Tornar</button>

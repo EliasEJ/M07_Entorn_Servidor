@@ -62,10 +62,7 @@ function login($username, $password){
                 $_SESSION['user'] = $user;
                 //echo "Login correcte";
                 header('Location: ../index.php');
-            } else {
-                // La contrasenya és incorrecta.
-                echo "Contrasenya incorrecta.";
-            }
+            } 
         } else {
             // No s'ha trobat cap usuari amb el nom d'usuari proporcionat.
             echo "Usuari no trobat.";
@@ -74,7 +71,6 @@ function login($username, $password){
         echo "Error en la consulta: " . $e->getMessage();
     }
 }
-
 
 /**
  * Funció per registrar un usuari

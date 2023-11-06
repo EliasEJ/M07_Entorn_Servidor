@@ -10,15 +10,14 @@ require_once '../CONTROLADOR/controlador.login.php';
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
 	<link rel="stylesheet" href="../ESTIL/estils.css"> 
     <title>Login</title>
-    <style>
-    </style>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
   <h1>Login</h1>
     
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="centrarFormulari">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" value = "<?php echo username() ?>" required><br>
+        <label for="username">Email</label>
+        <input type="email" name="username" id="username" value = "<?php echo username() ?>" required><br>
         <label for="password">Password&nbsp;</label>
         <input type="password" name="password" id="password" value = "<?php echo password() ?>" required><br>
         <button type="submit" id="boto" value="Login" class="bttRegistre">Login</button>
