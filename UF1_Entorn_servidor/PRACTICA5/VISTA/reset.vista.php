@@ -12,7 +12,8 @@
     <label for="username">Username:</label>
     <input type="text" name="username" id="username" required>
     <br>
-    <button type="submit">Enviar</button>
+    <button type="submit" class="bttRegistre">Enviar</button>
+    <button type='reset' value='Tornar' onclick="window.location.href='../index.php'" class="bttRegistre">Tornar</button>
     <?php
     require_once '../CONTROLADOR/controlador.reset.php';
     ?>

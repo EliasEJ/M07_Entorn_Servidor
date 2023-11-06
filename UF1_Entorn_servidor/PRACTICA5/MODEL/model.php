@@ -208,7 +208,6 @@ function obtenirUsername($token){
 
 function canviarPassword($username, $password){
     $con = con();
-    $password = password_hash($password, PASSWORD_DEFAULT);
     try {
         $statement = $con->prepare("UPDATE usuaris SET password = :password WHERE username = :username");
         $statement->bindParam(':username', $username);

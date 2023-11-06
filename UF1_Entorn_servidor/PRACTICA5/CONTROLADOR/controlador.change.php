@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtenir el username a partir del token
     $username = obtenirUsername($token);
 
+    $novaPassword = password_hash($novaPassword, PASSWORD_DEFAULT);
+
     // Actualitzar la contrasenya
     canviarPassword($username, $novaPassword);
     echo 'Contrasenya actualitzada amb èxit';

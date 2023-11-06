@@ -15,7 +15,9 @@
     <label for="novaPassword2">Torna a introduïr la contrasenya: </label>
     <input type="password" name="novaPassword2" id="novaPassword2" required>
     <br>
-    <button type="submit">Enviar</button>
+    <button type="submit" class="bttRegistre">Enviar</button>
+    <button type='reset' value='Tornar' onclick="window.location.href='../index.php'" class="bttRegistre">Tornar</button>
+
     <?php
     require_once '../CONTROLADOR/controlador.change.php';
     ?>
