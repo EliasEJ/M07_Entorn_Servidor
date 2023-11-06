@@ -9,8 +9,11 @@
 <body>
   <h1>Canviar contrasenya</h1>
   <form method="post" class="centrarFormulari">
-    <label for="novaPassword">Nova password: </label>
+    <label for="novaPassword">Nova contrasenya: </label>
     <input type="password" name="novaPassword" id="novaPassword" required>
+    <br>
+    <label for="novaPassword2">Torna a introduïr la contrasenya: </label>
+    <input type="password" name="novaPassword2" id="novaPassword2" required>
     <br>
     <button type="submit">Enviar</button>
     <?php

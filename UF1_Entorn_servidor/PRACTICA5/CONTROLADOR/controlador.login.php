@@ -12,8 +12,8 @@ function comprovar() {
     // Comprova si s'ha enviat el formulari
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Obte les dades del formulari
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = htmlspecialchars($_POST['username']);
+        $password = htmlspecialchars($_POST['password']);
 
         // Valida les dades
         $errors = [];

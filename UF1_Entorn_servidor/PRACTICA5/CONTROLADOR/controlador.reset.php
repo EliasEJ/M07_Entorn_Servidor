@@ -14,7 +14,7 @@ require '..\MODEL\model.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Obtenemos los datos del formulario
-  $username = $_POST['username'];
+  $username = htmlspecialchars($_POST['username']);
 
   $token = bin2hex(random_bytes(32));
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Configuramos el mensaje
     $mail->setFrom('ccdarckx@gmail.com', 'Elyass Jerari');
     $mail->addAddress($username);
-    $mail->Subject = 'Recuperació de contrasenya';
+    $mail->Subject = 'Recuperar contrasenya';
     $mail->Body = 'Per recuperar la teva contrasenya, fes clic en el següent enllaç: http://localhost/M07_Entorn_Servidor/UF1_Entorn_servidor/PRACTICA5/VISTA/change.vista.php?token=' . $token;
 
     // Enviamos el mensaje

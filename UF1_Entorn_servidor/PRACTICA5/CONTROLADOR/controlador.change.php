@@ -6,7 +6,13 @@ require '../MODEL/model.php';
 $token = $_GET['token'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $novaPassword = $_POST['novaPassword'];
+    $novaPassword = htmlspecialchars($_POST['novaPassword']);
+    $novaPassword2 = htmlspecialchars($_POST['novaPassword2']);
+
+    if ($novaPassword !== $novaPassword2) {
+        echo 'Les contrasenyes no coincideixen';
+        exit;
+    }
 
     // Obtenir el username a partir del token
     $username = obtenirUsername($token);
