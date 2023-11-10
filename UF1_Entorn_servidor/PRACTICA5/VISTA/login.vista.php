@@ -13,9 +13,10 @@ require_once '../CONTROLADOR/controlador.login.php';
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
-  <h1>Login</h1>
-    
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="centrarFormulari">
+  <h1></h1>
+    <div class="_container">
+        <h2 class="heading">Login</h2>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
         <label for="username">Email</label>
         <input type="email" name="username" id="username" value = "<?php echo username() ?>" required><br>
         <label for="password">Password&nbsp;</label>
@@ -27,8 +28,6 @@ require_once '../CONTROLADOR/controlador.login.php';
         Has oblidat la contrasenya ?<a href="reset.vista.php"> Recupera-la</a>
         </div>
     </form>
-    <div class="_container">
-        <h2 class="heading">Login</h2>
     </div>
     <div class="_container btn">
         
