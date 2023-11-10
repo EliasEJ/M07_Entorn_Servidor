@@ -7,8 +7,9 @@
   <title>Canviar contrasenya</title>
 </head>
 <body>
-  <h1>Canviar contrasenya</h1>
-  <form method="post" class="centrarFormulari">
+  <div class="_container">
+  <h2 class="heading">Canviar contrasenya</h2>
+  <form method="post">
     <label for="novaPassword">Nova contrasenya: </label>
     <input type="password" name="novaPassword" id="novaPassword" required>
     <br>
@@ -22,5 +23,6 @@
     require_once '../CONTROLADOR/controlador.change.php';
     ?>
   </form>
+  </div>
 </body>
 </html>

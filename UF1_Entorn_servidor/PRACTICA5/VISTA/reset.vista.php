@@ -7,8 +7,9 @@
   <title>Recuperar contrasenya</title>
 </head>
 <body>
-  <h1>Recuperar contrasenya</h1>
-  <form method="post" class="centrarFormulari">
+  <div class="_container">
+  <h2 class="heading">Recuperar contrasenya</h2>
+  <form method="post">
     <label for="username">Email:</label>
     <input type="email" name="username" id="username" required>
     <br>
@@ -18,5 +19,6 @@
     require_once '../CONTROLADOR/controlador.reset.php';
     ?>
   </form>
+  </div>
 </body>
 </html>
