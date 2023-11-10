@@ -59,7 +59,7 @@ function login($username, $password){
             // Verificar la contrasenya.
             if (password_verify($password, $user['password'])) {
                 // La contrasenya és correcta.
-                $_SESSION['user'] = $user;
+                $_SESSION['user'] = $username;
                 //echo "Login correcte";
                 header('Location: ../index.php');
             } 
@@ -213,6 +213,21 @@ function canviarPassword($username, $password){
     } catch(PDOException $e){
         echo "Error: " . $e->getMessage();
     }
+}
+
+function checkIfUserExists($db_connection, $id) {
+    $stmt = $db_connection->prepare("SELECT * FROM `usuaris` WHERE `google_id` = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function insertUser($db_connection, $id, $email) {
+    $stmt = $db_connection->prepare("INSERT INTO `usuaris`(`username`,`google_id`) VALUES(:email, :id)");
+    $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+    return $db_connection->lastInsertId();
 }
 
 ?>

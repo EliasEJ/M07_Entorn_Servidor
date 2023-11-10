@@ -27,5 +27,15 @@ require_once '../CONTROLADOR/controlador.login.php';
         Has oblidat la contrasenya ?<a href="reset.vista.php"> Recupera-la</a>
         </div>
     </form>
+    <div class="_container">
+        <h2 class="heading">Login</h2>
+    </div>
+    <div class="_container btn">
+        
+        <a type="button" class="login-with-google-btn" href="<?php echo $client->createAuthUrl(); ?>">
+            Sign in with Google
+        </a>
+
+    </div>
 </body>
 </html>
