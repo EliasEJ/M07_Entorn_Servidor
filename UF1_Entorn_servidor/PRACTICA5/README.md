@@ -10,3 +10,9 @@ He creat un trigger (`before_update_usuaris`) que s'executa abans de les actuali
 - Si no es proporciona un valor per a `token_creation_time`, el deixo com a NULL.
 
 Aquest trigger garanteix que `token_creation_time` s'actualitzi bé amb el token i tingui un valor per defecte de NULL si no se n'ha proporcionat cap.
+
+## Codi CONTROLADOR/LOGIN
+
+Dins del codi he aconseguit fer la part de login amb OAuth2.0, però no he aconseguit fer la part de HybridAuth, ja que no he aconseguit fer que funcioni la API de GitHub.
+Amb OAuth2.0 he aconseguit fer que funcioni amb Google i he emmagatzemat el token d'accés a la base de dades.
+
