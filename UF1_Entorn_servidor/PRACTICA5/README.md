@@ -1,6 +1,4 @@
-# README - Descripció del Projecte
-
-## Base de Dades
+# README
 
 Aquesta base de dades emmagatzema informació d'usuaris, incloent credencials i tokens de recuperació.
 
