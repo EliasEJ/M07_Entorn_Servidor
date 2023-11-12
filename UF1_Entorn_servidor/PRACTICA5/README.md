@@ -17,3 +17,7 @@ Dins del codi he aconseguit fer la part de login amb `OAuth2.0`, però no he aco
 
 Amb OAuth2.0 he aconseguit fer que funcioni amb `Google` i he emmagatzemat el token d'accés a la base de dades.
 
+## Dades d'accés
+
+- **Usuari**: elyass909@gmail.com
+- **Contrasenya**: 1234
