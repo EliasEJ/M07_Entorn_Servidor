@@ -7,7 +7,7 @@ require_once 'HybridAuth/src/autoload.php';
 
 // Configuració d'inici de sessió amb HybridAuth (GitHub)
 $config = [
-    'callback' => 'http://localhost/M07_Entorn_Servidor/UF1_Entorn_servidor/PRACTICA5/CONTROLADOR/controlador.login.php',
+    'callback' => 'http://localhost/M07_Entorn_Servidor/UF1_Entorn_servidor/PRACTICA5/CONTROLADOR/controlador.login.php?login=github',
     'providers' => [
         'GitHub' => [
             'enabled' => true,
@@ -129,42 +129,41 @@ if (isset($_GET['code'])) {
         exit;
     }
 }
-if (isset($_GET['login']) && $_GET['login'] == 'github') {
-    $hybridauth = new Hybridauth($config);
-    try {
-        $hybridauth->authenticate('GitHub');
-        $authUrl = $adapter->getAuthenticateUrl();
 
-        if ($hybridauth->authenticate('GitHub')) {
+if (isset($_GET['login']) && $_GET['login'] == 'github') {
+        $hybridauth = new Hybridauth($config);
+        try {
+            $hybridauth->authenticate('GitHub');
             $adapter = $hybridauth->getAdapter('GitHub');
-            $userProfile = $adapter->getUserProfile();
-            $db_connection = con();
-            $id = $db_connection->quote($userProfile->identifier);
-            $full_name = $db_connection->quote(trim($userProfile->displayName));
-            $email = $db_connection->quote($userProfile->email);
-            $profile_pic = $db_connection->quote($userProfile->photoURL);
-            $existing_user = checkIfUserExists($db_connection, $id);
-            if ($existing_user) {
-                $_SESSION['user'] = $email;
+            
+            // Obtener información del usuario autenticado con GitHub
+            $github_user_info = $adapter->getUserProfile();
+    
+            // Guardar información en la base de datos
+            $github_id = $db_connection->quote($github_user_info->identifier);
+            $github_email = $db_connection->quote($github_user_info->email);
+    
+            // Verificar si el usuario ya existe en la base de datos
+            $existing_github_user = checkIfUserExists($db_connection, $github_id);
+            if ($existing_github_user) {
+                $_SESSION['user'] = $github_email;
                 header('Location: ../index.php');
                 exit;
             } else {
-                // if user does not exist, insert the user
-                $inserted_id = insertUser($db_connection, $id, $email);
-                if ($inserted_id) {
-                    $_SESSION['user'] = $email;
+                // Si el usuario de GitHub no existe, insertarlo en la base de datos
+                $inserted_github_id = insertarUserGithub($github_email, $github_id);
+                if ($inserted_github_id) {
+                    $_SESSION['user'] = $github_email;
                     header('Location: ../index.php');
                     exit;
                 } else {
-                    echo "Sign up failed! (Something went wrong).";
+                    echo "GitHub sign up failed! (Something went wrong).";
                 }
             }
-        }
     }catch(Exception $e){
         echo $e->getMessage();
     }
 }
-
 
 /**
  * Funció per mantenir les dades del formulari en cas d'error

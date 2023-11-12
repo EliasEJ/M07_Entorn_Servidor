@@ -173,9 +173,11 @@ function esborrar($id){
     }
 }
 
-$pdo = con();
-
-
+/**
+ * Funció per inserir un token a la base de dades a partir del nom d'usuari
+ * @param string $username - Nom d'usuari
+ * @param string $token - Token
+ */
 function token($username, $token){
     $con = con();
     try {
@@ -189,6 +191,10 @@ function token($username, $token){
     }
 }
 
+/**
+ * Funció per obtenir el username a partir del token
+ * @param string $username - Nom d'usuari
+ */
 function obtenirUsername($token){
     $con = con();
     try {
@@ -202,6 +208,11 @@ function obtenirUsername($token){
     }
 }
 
+/**
+ * Funció per canviar la contrasenya
+ * @param string $username - Nom d'usuari
+ * @param string $password - Contrasenya
+ */
 function canviarPassword($username, $password){
     $con = con();
     try {
@@ -215,6 +226,10 @@ function canviarPassword($username, $password){
     }
 }
 
+/**
+ * Funció per comprovar si l'usuari existeix
+ * @param string $username - Nom d'usuari
+ */
 function checkIfUserExists($db_connection, $id) {
     $stmt = $db_connection->prepare("SELECT * FROM `usuaris` WHERE `google_id` = :id");
     $stmt->bindParam(':id', $id);
@@ -222,6 +237,12 @@ function checkIfUserExists($db_connection, $id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Funció per inserir un usuari de Google a la base de dades
+ * @param PDO $db_connection - Connexió a la base de dades
+ * @param string $id - Id de Google
+ * @param string $email - Email de Google
+ */
 function insertUser($db_connection, $id, $email) {
     $stmt = $db_connection->prepare("INSERT INTO `usuaris`(`username`,`google_id`) VALUES(:email, :id)");
     $stmt->bindParam(":email", $email);
@@ -229,5 +250,74 @@ function insertUser($db_connection, $id, $email) {
     $stmt->execute();
     return $db_connection->lastInsertId();
 }
+
+/**
+ * Funció per inserir un usuari de GitHub a la base de dades
+ * @param string $username - Nom d'usuari
+ * @param string $github_id - Id de GitHub
+ */
+function insertarUserGithub($username, $github_id) {
+    $con = con();
+    try {
+        $statement = $con->prepare("INSERT INTO usuaris (username, github_id) VALUES (:username, :github_id)");
+        $statement->bindParam(':username', $username);
+        $statement->bindParam(':github_id', $github_id);
+
+        if ($statement->execute()) {
+            return true;  // Èxit en la inserció
+        } else {
+            echo "Error en l'execució de la inserció a la base de dades.";
+            return false;
+        }
+    } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+/**
+ * Funció per obtenir el username i el token creation time a partir del token
+ * @param string $token - Token
+ */
+function obtenirUsernameITokenCreationTime($token) {
+    $pdo = con();
+    try{
+        $stmt = $pdo->prepare("SELECT username, token_creation_time FROM usuaris WHERE token = :token");
+        $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            $username = $result['username'];
+            $tokenCreationTime = $result['token_creation_time'];
+
+            return [$username, $tokenCreationTime];
+        } else {
+            return false; // El token no fue encontrado
+        }
+    }catch(PDOException $e){
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+
+// function obtenirContrasenya($username) {
+//     $con = con();
+//     try {
+//         $sql = "SELECT password FROM usuaris WHERE username = :username";
+//         $stmt = $con->prepare($sql);
+//         $stmt->bindParam(':username', $username);
+//         $stmt->execute();
+
+//         // Obtener la contraseña
+//         $contrasenya = $stmt->fetch(PDO::FETCH_ASSOC)['password'];
+//         return $contrasenya;
+
+//     } catch (PDOException $e) {
+//         // Manejar errores de conexión o consulta
+//         echo "Error: " . $e->getMessage();
+//     }
+// }
 
 ?>
