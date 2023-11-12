@@ -13,7 +13,7 @@ Aquest trigger garanteix que `token_creation_time` s'actualitzi bé amb el token
 
 ## Codi `CONTROLADOR/LOGIN`
 
-Dins del codi he aconseguit fer la part de login amb OAuth2.0, però no he aconseguit fer la part de HybridAuth, ja que no he aconseguit fer que funcioni la API de GitHub.
+Dins del codi he aconseguit fer la part de login amb `OAuth2.0`, però no he aconseguit fer la part de `HybridAuth`, ja que no he aconseguit fer que funcioni la API de GitHub.
 
-Amb OAuth2.0 he aconseguit fer que funcioni amb Google i he emmagatzemat el token d'accés a la base de dades.
+Amb OAuth2.0 he aconseguit fer que funcioni amb `Google` i he emmagatzemat el token d'accés a la base de dades.
 
