@@ -3,6 +3,23 @@
 include '../MODEL/model.php';
 require_once '../VISTA/login.vista.php';
 require '../google-api/vendor/autoload.php';
+require_once 'HybridAuth/src/autoload.php';
+
+// Configuració d'inici de sessió amb HybridAuth (GitHub)
+$config = [
+    'callback' => 'http://localhost/M07_Entorn_Servidor/UF1_Entorn_servidor/PRACTICA5/CONTROLADOR/controlador.login.php',
+    'providers' => [
+        'GitHub' => [
+            'enabled' => true,
+            'keys' => [
+                'id' => '156e01e565834feb606b',
+                'secret' => 'b330a66108b9f53bf2e4e124fbb7c167dcffa53b'
+            ]
+        ]
+    ]
+];
+use Hybridauth\Hybridauth;
+
 
 // Inicia la sessió
 session_start();
@@ -112,6 +129,43 @@ if (isset($_GET['code'])) {
         exit;
     }
 }
+if (isset($_GET['login']) && $_GET['login'] == 'github') {
+    $hybridauth = new Hybridauth($config);
+    try {
+        $hybridauth->authenticate('GitHub');
+        $authUrl = $adapter->getAuthenticateUrl();
+
+        if ($hybridauth->authenticate('GitHub')) {
+            $adapter = $hybridauth->getAdapter('GitHub');
+            $userProfile = $adapter->getUserProfile();
+            $db_connection = con();
+            $id = $db_connection->quote($userProfile->identifier);
+            $full_name = $db_connection->quote(trim($userProfile->displayName));
+            $email = $db_connection->quote($userProfile->email);
+            $profile_pic = $db_connection->quote($userProfile->photoURL);
+            $existing_user = checkIfUserExists($db_connection, $id);
+            if ($existing_user) {
+                $_SESSION['user'] = $email;
+                header('Location: ../index.php');
+                exit;
+            } else {
+                // if user does not exist, insert the user
+                $inserted_id = insertUser($db_connection, $id, $email);
+                if ($inserted_id) {
+                    $_SESSION['user'] = $email;
+                    header('Location: ../index.php');
+                    exit;
+                } else {
+                    echo "Sign up failed! (Something went wrong).";
+                }
+            }
+        }
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }
+}
+
+
 /**
  * Funció per mantenir les dades del formulari en cas d'error
  */
