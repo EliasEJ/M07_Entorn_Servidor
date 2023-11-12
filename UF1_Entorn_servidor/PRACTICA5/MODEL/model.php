@@ -17,6 +17,8 @@ function con()
     }
 }
 
+$pdo = con();
+
 /**
  * Funció per comprovar si l'usuari existeix
  * @param string $username - Nom d'usuari

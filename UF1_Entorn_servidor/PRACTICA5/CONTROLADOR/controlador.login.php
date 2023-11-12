@@ -50,7 +50,7 @@ function comprovar() {
         $password = htmlspecialchars($_POST['password']);
         // Guardar el nombre d'intents en una cookie.
         if (!isset($_COOKIE['numIntents'])) {
-            $numIntents = 0;
+            $numIntents = -1;
             setcookie('numIntents', $numIntents, time() + 3600);
         } else {
             $numIntents = $_COOKIE['numIntents'];
